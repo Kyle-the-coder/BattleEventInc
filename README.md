@@ -6,7 +6,7 @@ This is my first Python and Flask project where users can register, login, and h
   https://user-images.githubusercontent.com/111798115/210454002-b236875d-a756-4c69-8ad0-c248c4d6c64e.mov
 
 ---
-:brain: Users can see upcoming events that other users posted and see who has signed up for those events:
+:brain: Users can see upcoming events that other users posted and see who has signed up for those events as well as the Google map using Google Maps API:
 
 https://user-images.githubusercontent.com/111798115/210454513-abbb5f6e-00fd-4a9f-8958-408db4df8293.mov
 
