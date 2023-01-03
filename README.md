@@ -1,5 +1,5 @@
 # BattleEventInc
-This is my first Python and Flask project where users can register, login, and host a dance battle tournament designed to make hosting and running a dance battle event much easier and smoother for everyone involved
+Full Stack Web App. This is my first Python and Flask project where users can register, login, and host a dance battle tournament designed to make hosting and running a dance battle event much easier and smoother for everyone involved
 ---
 👀 Users get an eye opening and show stopping landing page with a short about section and the option to register or login:
 
