@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Create Event</title>
+</head>
+<body>
+    
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark mb-3 border border-dark">
+        <div class="container">
+            <a href="#" class="navbar-brand text-warning">Battle Events Inc.
+
+                <img src="static/img/breakdance.png" alt="" width="60" height="60" style="background-color: white;" class="rounded p-1 m-1 logo img-fluid">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/dashboard" class="nav-link">Back to Profile Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/enter_battle_page" class="nav-link">Sign Up for a Battle</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {%  for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+    <div class="page">
+        
+        <div class="left_side p-4 border border-2 rounded">
+            <div class="edit">
+                    <h3 class="bg-dark border border-2 rounded text-info p-2">Create Your Event</h3>
+            </div>
+            <form action="/create_event" class="form" id="recipe_form" method="POST">
+                <label for="name" class="h5 bg-dark text-info p-3 rounded">Name:</label>
+                <input type="text" name="name" class="form-control mb-3 border border-3 border-dark">
+
+
+                <!--FORM FOR MAP AUTOCOMPLETE-->
+                <label for="location" class="h5 bg-dark text-info p-3 rounded">Location:</label>
+                <input type="text" name="location" class="form-control mb-3 border border-3 border-dark" id="search_input" placeholder="Type address...">
+
+
+                <!--MAP-->
+                <div class="map_section mb-3 border border-2 border-dark">
+                    <div id="map"></div>
+                </div>
+        
+                <label for="date" class="h5 bg-dark text-info p-3 rounded">Date:</label>
+                <input type="date" name="date" class="form-control mb-3 border border-3 border-dark">
+
+                <label for="details" class="h5 bg-dark text-info p-3 rounded">Details</label>
+                <textarea name="details" id="description" cols="30" rows="10" class="form-control mb-3 border border-3 border-dark"></textarea>
+
+
+                <label for="price" class="h5 bg-dark text-info p-3 rounded">Price</label>
+                <input type="text" name="price" class="form-control mb-3 border border-3 border-dark">
+
+                <label for="way_to_pay" class="h5 bg-dark text-info p-3 rounded">How To Pay:</label>
+                <input type="text" name="way_to_pay" class="form-control mb-3 border border-3 border-dark">
+                <br>
+
+                <button type="submit" class="btn btn-info mt-3">Create Event</button>
+            </form>
+        </div>
+
+        <div class="ad_space">
+
+            <img src="static/img/bc1.jpeg" class="img-fluid rounded" width="400"alt="">
+            <img src="static/img/hhi.webp" class="img-fluid rounded my-5" width="400"alt="">
+        </div>
+
+        
+
+        
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .title{
+            width: 100%;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            margin-bottom: 30px;
+        }
+
+        .title > h1 {
+            margin-right: 600px;
+        }
+
+        .page{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .left_side{
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        .edit{
+            width: 65%;
+            display: flex;
+            
+        }
+        #map {
+            height: 300px;
+            width: 100%;
+        }
+
+
+    </style>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='app.js')}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACmk7I9wC3nOAO_PXD35sDIsLpoXSL5hI&callback=initMap"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>View Event</title>
+</head>
+<body>
+
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark mb-3 border border-dark">
+        <div class="container">
+            <a href="#" class="navbar-brand text-warning">
+                Battle Events Inc.
+                <img src="static/img/breakdance.png" alt="" width="60" height="60" style="background-color: white;" class="rounded p-1 m-1 logo img-fluid">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/dashboard" class="nav-link">Back to Profile Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/enter_battle_page" class="nav-link">Sign Up for a Battle</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+            
+    <!--View Event Display-->
+    <div class="sighting_name">
+        {% for event in events %}
+        <h2>{{event.name}}</h2>
+        <h3>posted by: {{event.creator.first_name}} {{event.creator.last_name}}</h3>
+    </div>
+    
+    <div class="page">
+        <div class="content border border-3 border-dark p-4">
+            <p> <span class="fw-bold">Location:</span> {{event.location}}</p>
+            <div class="map_section mb-3 border border-2 border-dark">
+        
+                <div id="map"></div>
+    
+    
+            </div>
+            <p><span class="fw-bold">Date:</span> {{event.date}}</p>
+            <p><span class="fw-bold">Details:</span> {{event.details}}</p>
+            <p><span class="fw-bold">Price:</span> {{event.price}}</p>
+            <p><span class="fw-bold">How to Pay:</span> {{ event.way_to_pay }}</p>
+            {% endfor %}
+            <p><span class="fw-bold">Participants:</span> </p> 
+                {% for entry in entries%}
+                    <p>{{ entry.dance_name }}</p>
+                {% endfor %}
+            
+        </div>
+    </div>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .title{
+            width: 100%;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            margin-bottom: 30px;
+        }
+
+        .title > h1 {
+            margin-right: 600px;
+        }
+
+        .sighting_name {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sighting_name > h2 {
+            margin-left: 120px;
+        }
+
+        .sighting_name > h3 {
+            margin-right: 120px;
+        }
+
+        .page {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: top;
+            
+        }
+
+        .content {
+            width: 85%;
+            
+        }
+        #map {
+            height: 250px;
+            
+        }
+    </style>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='app.js')}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACmk7I9wC3nOAO_PXD35sDIsLpoXSL5hI&callback=initMap"></script>
+</body>
+</html>

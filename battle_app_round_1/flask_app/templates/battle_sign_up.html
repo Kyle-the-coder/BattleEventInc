@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Battle Sign Up</title>
+</head>
+<body>
+    
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark mb-3 border border-dark">
+        <div class="container">
+            <a href="#" class="navbar-brand text-warning">Battle Events Inc.
+
+                <img src="static/img/breakdance.png" alt="" width="60" height="60" style="background-color: white;" class="rounded p-1 m-1 logo img-fluid">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/dashboard" class="nav-link">Back to Profile Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {%  for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+    <div class="page">
+        
+        <div class="left_side p-4 border border-2 rounded">
+            <div class="edit">
+                <h3 class="bg-dark border border-2 rounded text-info p-2">Sign Up for a Battle</h3>
+            </div>
+            
+            <form action="/create_entry" class="form" id="recipe_form" method="POST">
+                <label for="first_name" class="h5 bg-dark text-info p-3 rounded">First Name:</label>
+                <input type="text" name="first_name" class="form-control mb-3 border border-3 border-dark">
+
+                <label for="last_name" class="h5 bg-dark text-info p-3 rounded">Last Name:</label>
+                <input type="text" name="last_name" class="form-control mb-3 border border-3 border-dark">
+
+                <label for="dance_name" class="h5 bg-dark text-info p-3 rounded">Dance Name:</label>
+                <input type="text" name="dance_name" class="form-control mb-3 border border-3 border-dark">
+
+                <label for="dance_style" class="h5 bg-dark text-info p-3 rounded">Dance Style:</label>
+                <input type="text" name="dance_style" class="form-control mb-3 border border-3 border-dark">
+
+                <label for="event_id" class="h5 bg-dark text-info p-3 rounded">Event Name:</label>
+                <select name="event_id" id="" class="form-control border border-2 border-dark mb-3">
+                    <option hidden>pick one</option>
+                    {% for event in events %}
+                    <option value="{{ event.id }}">{{ event.name }}</option>
+                    {% endfor %}
+                    
+                </select>
+
+                <br>
+
+                <button type="submit" class="btn btn-info mt-3">Enter Event</button>
+            </form>
+        
+            
+        </div>
+        <div class="ad_space">
+
+            <img src="static/img/adidas1.jpeg" class="img-fluid rounded" width="500"alt="">
+        </div>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .title{
+            width: 100%;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            margin-bottom: 30px;
+        }
+
+        .title > h1 {
+            margin-right: 600px;
+        }
+
+        .page{
+            display: flex;
+            width: 100%;
+            
+            
+        }
+
+        .left_side{
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+            margin-left: 30px;
+            margin-right: 10px
+        }
+
+        .edit{
+            width: 65%;
+            display: flex;
+        }
+
+
+
+    </style>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+</html>

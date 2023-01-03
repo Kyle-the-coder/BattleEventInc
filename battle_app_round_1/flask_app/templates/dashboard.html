@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> 
+    <title>Battle Event Inc.</title>
+</head>
+<body>
+
+
+        <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark mb-3 border border-dark">
+        <div class="container">
+            <a href="#" class="navbar-brand text-warning">Battle Events Inc.
+
+                <img src="static/img/breakdance.png" alt="" width="60" height="60" style="background-color: white;" class="rounded p-1 m-1 logo img-fluid">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/create_events_page" class="nav-link">Host an Event</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/enter_battle_page" class="nav-link">Sign Up for a Battle</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Card -->
+    <section class="profile_box mb-2">
+        <div class="profile_card border border-3 border-dark">
+            <div class="profile_photo_name p-3 bg-light text-warning border-bottom border-dark">
+                <img src="static/img/breakdance.png" width="60" height="60" alt="break pic" class="border border-2 rounded p-1 bg-warning border-dark">
+                <h4 class="bg-dark rounded p-2">{{ session['first_name'] }} {{ session['last_name'] }} a.k.a. {{ dance_name.dance_name }}</h4>
+            </div>
+            <div class="profile_info p-3">
+                <p class="lead bg-dark rounded p-2 text-warning">About info:</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, eum?</p>
+                <p class="lead bg-dark rounded p-2 text-warning">Dance Style:</p>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="bracket_link">
+                <a href="/host_page" class="p-1">View Your Events</a>
+                <a href="#" class="p-1">Edit Your Profile</a>
+            </div>
+        </div>
+    </section>
+    <div class="ad_space">
+        <img src="static/img/nike1.png" class="img-fluid rounded m-1" width="500" alt="">
+        <img src="static/img/macys.jpeg" class="img-fluid rounded m-1" width="600" alt="">
+
+    </div>
+
+
+    <!-- View Events Section/Table -->
+    <section>
+        <div class="view_events_box">
+            <div class="view_events_info">
+                    <div class="sightings">
+                        <div class="heading bg-dark">
+                            <h3 class="p-2 table_title text-warning">View Upcoming Events</h3>
+                        </div>
+                            
+                            
+                        
+                        
+                        
+                        <div class="content">
+                            <table class="table table-warning border border-3 border-dark dojo_table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name:</th>
+                                        <th scope="col">Location:</th>
+                                        <th scope="col">Date:</th>
+                                        <th scope="col">Actions:</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        
+                                    {% for event in events %}
+                                        <tr>
+                                            <td>{{event.name}}</td>
+                                            <td>{{event.location}}</td>
+                                            <td>{{event.date}}</td>
+                                            <td>
+                                                <a href="/view_event/{{event.id}}" class="a_tag">view event</a> 
+                                                {% if event.user_id == session['user_id'] %}
+                                                <a href="/edit_event_page/{{event.id}}" class="a_tag">edit</a>
+                                                <a href="/delete/{{event.id}}">delete</a>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                
+
+            </div>
+        </div>
+
+    </section>
+
+
+    
+
+
+
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .profile_card{
+            background-color: rgb(200, 200, 200);
+            
+        }
+        .profile_box{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .profile_photo_name{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 32%;
+            width: 100%;
+            justify-content: space-between;
+        }
+        .profile_info{
+            display: flex;
+            flex-direction: column;
+        }
+        .view_events_box{
+            width: 100%;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .view_events_info{
+            width: 75%;
+            height: 100%;
+        }
+        .table_title{
+            color: rgb(45, 227, 45);
+        }
+        .heading{
+            width: 100%;
+            height: 75px;
+            display: flex;
+            align-items: center;
+        }
+        .bracket_link{
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            flex-direction: column;
+        }
+        .ad_space{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+</html>
