@@ -1,5 +1,5 @@
 # BattleEventInc
-Full Stack Web App. This is my first Python and Flask project where users can register, login, and host a dance battle tournament. Designed to make hosting and running a dance battle event much easier and smoother for everyone involved
+Full Stack Web App. This is my first Python, Flask, and MySQL project where users can register, login, and host a dance battle tournament. Designed to make hosting and running a dance battle event much easier and smoother for everyone involved
 ---
 👀 Created a database using MySQL to store user and event information and used SQL queries so users information can be accessed and displayed. Generates a Bcrypt password using Bcrypt when user’s register for user security between developer and user:
 
